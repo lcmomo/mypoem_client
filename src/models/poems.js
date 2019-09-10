@@ -3,12 +3,12 @@ import {
     fetchAuthorListI
 }
 
-from '../services/category.js'
+from '../services/poems.js'
 
 
 export default {
 
-    namespace: 'category',
+    namespace: 'poems',
   
     state: {
         categoryList:[],

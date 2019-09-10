@@ -12,7 +12,7 @@ function IndexPage() {
       <div className={styles.title}>
         <p>人生自是有情诗</p>
         <p>此爱也关风和月</p>
-        <Link to="category" >点击进入</Link>
+        <Link to="/home" >点击进入</Link>
       
       </div>
 
