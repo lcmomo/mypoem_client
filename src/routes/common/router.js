@@ -6,8 +6,18 @@ export const RouteConfig=[
         ),
         model:[],
         routes:[
+            
+        ]
+    },
+    {
+        path:"/home",
+        component:()=>(
+            import("../home/Home.js")
+        ),
+        model:[],
+        routes:[
             {
-                path:"/category",
+                path:"/home/category",
                 component:()=>(
                     import("../category/Category.js")
                 ),
@@ -15,6 +25,7 @@ export const RouteConfig=[
             }
         ]
     }
+
 ]
 
 // function RouterConfig({history,app}){

@@ -1,5 +1,5 @@
 import {
-    fetchCategoryListI,
+    fetchPoemListByCategoryI,
     fetchAuthorListI
 }
 
@@ -11,8 +11,7 @@ export default {
     namespace: 'poems',
   
     state: {
-        categoryList:[],
-        authorList:[]
+        poemList:[]
     },
   
     subscriptions: {
@@ -25,12 +24,12 @@ export default {
         yield put({ type: 'save' });
       },
 
-      *fetchCategoryList({payload,callback},{call,put}){
+      *fetchPoemListByCategory({payload,callback},{call,put}){
        
-          const results=yield call(fetchCategoryListI,payload);
+          const results=yield call(fetchPoemListByCategoryI,payload);
          const {data:{list}}=results;
           yield put({
-              type:'saveCategoryList',
+              type:'savePoemList',
               payload:list
           });
           if(typeof callback==='function'){
@@ -43,7 +42,7 @@ export default {
         const results=yield call(fetchAuthorListI,payload);
        const {data:{list}}=results;
         yield put({
-            type:'saveAuthorList',
+            type:'savePoemList',
             payload:list
         });
         if(typeof callback==='function'){
@@ -60,15 +59,16 @@ export default {
       save(state, action) {
         return { ...state, ...action.payload };
       },
-      saveCategoryList(state,action){
+      savePoemList(state,action){
           return {
               ...state,
-            categoryList:action.payload}
+            poemList:action.payload}
       },
       saveAuthorList(state,action){
         return {
             ...state,
-          authorList:action.payload}
+            poemList:action.payload
+          }
     }
     },
   

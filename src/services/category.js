@@ -11,3 +11,14 @@ export async function fetchAuthorListI(params){
     
     return request(`${baseUrl}/author/list?${stringify(params)}`).then(res=>res.data);
 }
+
+export async function fetchPoemListByCategoryI(params){
+    console.log(params)
+    return request(`${baseUrl}/poem/findPomesByCategory?${stringify(params)}`).then(res=>res.data);
+} 
+
+
+export async function fetchPoemListByAuthorI(params){
+    console.log(params)
+    return request(`${baseUrl}/poem/findPomesByAuthor?${stringify(params)}`).then(res=>res.data);
+} 

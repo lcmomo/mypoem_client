@@ -1,6 +1,8 @@
 import {
     fetchCategoryListI,
-    fetchAuthorListI
+    fetchAuthorListI,
+    fetchPoemListByCategoryI,
+    fetchPoemListByAuthorI
 }
 
 from '../services/category.js'
@@ -12,7 +14,8 @@ export default {
   
     state: {
         categoryList:[],
-        authorList:[]
+        authorList:[],
+        poemList:[]
     },
   
     subscriptions: {
@@ -49,8 +52,22 @@ export default {
         if(typeof callback==='function'){
             callback(results);
         }
-    }
+    },
 
+    *fetchPoemListByCategory({payload,callback},{call,put}){
+     const fetchType= 'authorName'===Object.keys(payload)[0] ?fetchPoemListByAuthorI:fetchPoemListByCategoryI
+       
+    const results=yield call(fetchType,payload);
+     const {data:{list}}=results;
+      yield put({
+          type:'savePoemList',
+          payload:list
+      });
+      if(typeof callback==='function'){
+          callback(results);
+      }
+  },
+  
 
 
 
@@ -69,7 +86,14 @@ export default {
         return {
             ...state,
           authorList:action.payload}
-    }
+    },
+
+    savePoemList(state,action){
+      return {
+          ...state,
+        poemList:action.payload
+      }
+  },
     },
   
   };

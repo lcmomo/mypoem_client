@@ -5,7 +5,8 @@ import { DatePicker,Button, Card, WingBlank, WhiteSpace,Icon, Grid,NavBar, } fro
 import styles from './IndexPage.css';
  
  
-function IndexPage() {
+function IndexPage(props) {
+  
   
   return (
     <div className={styles.normal}>

@@ -1,10 +1,13 @@
 
 import React, { Component } from 'react';
 import {Route} from 'dva/router';
+import { connect } from 'dva';
 import { Tabs,NavBar,Icon } from 'antd-mobile';
 import { StickyContainer, Sticky } from 'react-sticky'; 
 import Category from '../category/Category.js'
 import styles from './Home.less'
+
+@connect(({category})=>({category}))
 class Home extends Component {
     constructor(){
         super();
@@ -67,22 +70,25 @@ class Home extends Component {
             <div>
               
                 <StickyContainer>
-                <Tabs tabs={tabs2}
-                    initialPage={1}
-                    renderTabBar={renderTabBar}
-                    onChange={(tab, index) => { }}
-                    onTabClick={(tab, index) => {this.props.history.push(tab.key) }}
-                >
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
-                     
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
-                    Content of second tab
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
-                    Content of third tab
-                    </div>
-                </Tabs>
+                  <div id="tab">
+                    <Tabs tabs={tabs2}
+                        initialPage={1}
+                        renderTabBar={renderTabBar}
+                        onChange={(tab, index) => { }}
+                        onTabClick={(tab, index) => {this.props.history.push(tab.key) }}
+                        style={{backgroundColor:'#888e6d'}}
+                    >
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
+                        
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
+                        Content of second tab
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
+                        Content of third tab
+                        </div>
+                    </Tabs>
+                  </div>
                 </StickyContainer>
                
             </div>
@@ -95,13 +101,13 @@ class Home extends Component {
 
                 <NavBar
                     mode="dark"
-                    leftContent="返回"
+                    leftContent={<span onClick={()=>this.props.history.back()}>返回</span>}
                     rightContent={[
                     <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
                     <Icon key="1" type="ellipsis" />,
                     ]}
                     className={styles.navbar}
-                    >分类页
+                    >
                 </NavBar>
                 {/* <TableExample /> */}
                 <HomeTab />
